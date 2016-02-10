@@ -167,6 +167,8 @@ function gravity_transport() {
 
 # spinup - main gravity function
 function gravity_spinup() {
+# {% raw %}
+
   echo "::: "
 	# Loop through domain list.  Download each one and remove commented lines (lines beginning with '# 'or '/') and	 		# blank lines
 	for ((i = 0; i < "${#sources[@]}"; i++))
@@ -200,6 +202,9 @@ function gravity_spinup() {
         esac
         gravity_transport $url $cmd_ext $agent
 	done
+
+# {% endraw %}
+
 }
 
 # Schwarzchild - aggregate domains to one list and add blacklisted domains
@@ -231,6 +236,8 @@ function gravity_Blacklist(){
 
 
 function gravity_Whitelist() {
+# {% raw %}
+
   echo ":::"
 	# Prevent our sources from being pulled into the hole
 	plural=; [[ "${sources[@]}" != "1" ]] && plural=s
@@ -250,9 +257,8 @@ function gravity_Whitelist() {
 	numWhitelisted=$(wc -l < "/etc/pihole/whitelist.txt")
 	plural=; [[ "$numWhitelisted" != "1" ]] && plural=s
   echo " $numWhitelisted domain${plural} whitelisted!"
-  
-  
-		
+# {% endraw %}
+
 }
 
 function gravity_unique() {
